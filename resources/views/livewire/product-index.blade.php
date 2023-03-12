@@ -3,8 +3,9 @@
     <div class="card">
         <div class="card-header">
             <h3>{{ __('dashboard.products') }}</h3>
+            @can('add-product')
                 <a href="{{ route('products.create') }}" class="btn btn-primary float-end btn-sm text-white  ">{{ __('dashboard.add') }}</a>
-
+@endcan
 
             </h3>
         </div>

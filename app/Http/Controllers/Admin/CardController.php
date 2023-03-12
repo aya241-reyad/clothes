@@ -10,6 +10,10 @@ use App\Http\Requests\createCardRequest;
 
 class CardController extends Controller 
 {
+  function __construct(){
+    $this->middleware('permission:add-card', ['only' => ['create']]);
+
+}
 
   /**
    * Display a listing of the resource.

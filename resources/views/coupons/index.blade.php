@@ -21,7 +21,9 @@
             <div class="card-header">
                 <h4>
                     {{ __('dashboard.coupones') }}
+                    @can('add-coupon')
                     <a href="{{ route('coupon.create') }}" class="btn btn-primary float-end btn-sm text-white">{{ __('dashboard.add') }}</a>
+                    @endcan
                 </h4>
             </div>
             <!-- /.card-header -->

@@ -4,14 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\sizes\SizeIndex;
 
 use App\Http\Controllers\Admin\PDFController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -53,23 +55,42 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('products',ProductController::class);
     Route::resource('categories',CategoryController::class);
     Route::resource('cards',CardController::class);
-    Route::resource('offers',OfferController::class);
-    Route::resource('sliders', SliderController::class);
     Route::resource('shippings', ShippingController::class);
-    Route::get('/view-settings', [SettingController::class, 'create'])->name('view-settings');
-    Route::post('/store-settings', [SettingController::class, 'store'])->name('store-settings');
-    Route::get('/view-clients', [ClientController::class, 'index'])->name('view-clients');
-    Route::get('/delete-clients/{id}', [ClientController::class, 'delete'])->name('delete-clients');
-    Route::get('client-change-status', [ClientController::class,'changeStatus']);
-    Route::get('changeStatus', [OfferController::class,'changeStatus']);
-    Route::get('change-slider-status', [SliderController::class,'changeStatus']);
-    Route::get('orders',[OrderController::class,'index'])->name('orders');
-    Route::get('/show-order/{id}', [OrderController::class, 'show'])->name('show-order');
+    Route::resource('roles',RoleController::class);
+    Route::resource('users',UserController::class);
     Route::resource('products', ProductController::class);
-    Route::get('generate-pdf/{id}', [PDFController::class, 'generatePDF']);
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('/change/status/featured', [ProductController::class , 'changeStatus']);
+    //offers
+    Route::resource('offers',OfferController::class);
+    Route::get('changeStatus', [OfferController::class,'changeStatus']);
+
+    //sliders
+    Route::get('change-slider-status', [SliderController::class,'changeStatus']);
+    Route::resource('sliders', SliderController::class);
+    
+    Route::controller(SettingController::class)->group(function () {
+                Route::get('/view-settings','create')->name('view-settings');
+    Route::post('/store-settings', 'store')->name('store-settings');
+ });
+
+ Route::controller(ClientController::class)->group(function () {
+    Route::get('/view-clients',  'index')->name('view-clients');
+    Route::get('/delete-clients/{id}', 'delete')->name('delete-clients');
+    Route::get('client-change-status', 'changeStatus');
+ });
+  
+ Route::controller(OrderController::class)->group(function () {
+    Route::get('orders','index')->name('orders');
+    Route::get('/show-order/{id}',  'show')->name('show-order');
+ });
+
+
+Route::get('generate-pdf/{id}', [PDFController::class, 'generatePDF']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/change/status/featured', [ProductController::class , 'changeStatus']);
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\Admin\LangController@switchLang']);
+
+
+
 
     Route::controller(ColorController::class)->group(function () {
         Route::get('/colors', 'index')->name('index.colors');
@@ -82,7 +103,7 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 
     });
     
-              Route::controller(CouponController::class)->group(function () {
+    Route::controller(CouponController::class)->group(function () {
             Route::get('/coupons', 'index')->name('coupon.index');
             Route::get('/coupons/create', 'create')->name('coupon.create');
             Route::post('coupons/store','store')->name('coupon.store');

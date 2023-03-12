@@ -66,8 +66,14 @@ return [
 "code"=>" Code",
 "Transactions"=>"Transactions ",
 "orderstatistics"=>"Order Statistics ",
-"report"=>"Profile Report"
-
+"report"=>"Profile Report",
+"admin"=>"Admin",
+"no"=>"Number",
+"roles"=>"Roles",
+"back"=>"Back",
+"password"=>"Password",
+"confirmpassword"=>"Confirm Password",
+"role"=>"Role",
 
 
 

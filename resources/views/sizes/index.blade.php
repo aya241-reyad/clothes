@@ -12,10 +12,12 @@
         <div class="card">
             <div class="card-header">
                 <h3>{{ __('dashboard.sizes') }}
+                    @can('add-size')
                     <button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal"
                         data-bs-target="#basicModal">
                         {{ __('dashboard.add') }}
                     </button>
+@endcan
 
 
 

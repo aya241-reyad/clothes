@@ -8,7 +8,9 @@
         <div class="card">
             <div class="card-header">
                 <h3>{{ __('dashboard.categories') }}
+                     @can('add-category')
                     <a href="{{ route('categories.create') }}" class="btn btn-primary float-end btn-sm text-white  ">{{ __('dashboard.add') }}</a>
+                    @endcan
 
 
                 </h3>

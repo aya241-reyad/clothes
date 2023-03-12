@@ -10,6 +10,10 @@ use App\Http\Requests\createCategoryRequest;
 
 class CategoryController extends Controller 
 {
+   function __construct(){
+    $this->middleware('permission:add-category', ['only' => ['create']]);
+
+}
 
   /**
    * Display a listing of the resource.

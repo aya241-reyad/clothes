@@ -11,6 +11,11 @@ use App\Http\Requests\createOfferRequest;
 class OfferController extends Controller 
 {
 
+ function __construct(){
+    $this->middleware('permission:add-offer', ['only' => ['create']]);
+
+}
+
   /**
    * Display a listing of the resource.
    *

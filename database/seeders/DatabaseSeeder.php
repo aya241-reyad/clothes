@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('1234')
-        ]);
+        // \App\Models\User::create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@admin.com',
+        //     'password' => bcrypt('1234')
+        // ]);
         $this->call(SettingSeeder::class);
 $this->call(GovSeeder::class);
 

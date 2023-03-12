@@ -71,6 +71,25 @@
             <span class="menu-header-text">{{ __('dashboard.pages') }}</span>
         </li>
 
+ @can('appear-users')
+        <li class="menu-item {{ Request::segment(1) == 'users' ? 'active' : '' }}">
+            <a href="{{ route('users.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-user-check"></i>
+
+                <div data-i18n="Text Divider">{{ __('dashboard.admin') }}</div>
+            </a>
+        </li>
+        @endcan
+        @can('appear-roles')
+        <li class="menu-item {{ Request::segment(1) == 'roles' ? 'active' : '' }}">
+            <a href="{{ route('roles.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-error-alt"></i>
+
+                <div data-i18n="Text Divider">{{ __('dashboard.roles') }}</div>
+            </a>
+        </li>
+        @endcan
+
         <li class="menu-item {{ Request::segment(1) == 'view-clients' ? 'active' : '' }}">
             <a href="{{ route('view-clients') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-user-detail"></i>

@@ -7,6 +7,13 @@
 @inject('clients', 'App\Models\Client')
 
 @section('content')
+@if(!empty($roles->getRoleNames()))
+
+@foreach($roles->getRoleNames() as $v)
+
+@if($v == "Admin")
+
+
     <!-- Content wrapper -->
     <div class="content-wrapper container">
         <!-- Content -->
@@ -215,6 +222,10 @@
             <!--/ Total Revenue -->
         </div>
     </div>
+    @endif
+    @endforeach
+    @endif
+
     <!-- / Content -->
 @endsection
 
@@ -224,4 +235,6 @@
     {!! $chart1->renderJs() !!}
     {!! $chart2->renderJs() !!}
     {!! $chart3->renderJs() !!}
+    
+    
 @endsection

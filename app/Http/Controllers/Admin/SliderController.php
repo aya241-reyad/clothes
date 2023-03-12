@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+
+    function __construct(){
+    $this->middleware('permission:add-slider', ['only' => ['create']]);
+
+}
     public function index()
     {
         $sliders = Slider::all();

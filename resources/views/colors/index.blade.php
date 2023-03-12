@@ -8,7 +8,9 @@
         <div class="card">
             <div class="card-header">
                 <h3>{{ __('dashboard.colors') }}
+                     @can('add-colors')
                     <a href="{{ url('color/create') }}" class="btn btn-primary float-end btn-sm text-white  ">{{ __('dashboard.add') }}</a>
+                    @endcan
 
 
                 </h3>

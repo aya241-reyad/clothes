@@ -8,8 +8,9 @@
         <div class="card">
             <div class="card-header">
                 <h3>{{ __('dashboard.shipping') }}
+                    @can('add-shipping')
                     <a href="{{ route('shippings.create') }}" class="btn btn-primary float-end btn-sm text-white  ">{{ __('dashboard.add') }}</a>
-
+@endcan
 
                 </h3>
             </div>

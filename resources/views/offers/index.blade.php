@@ -7,11 +7,13 @@
 
         <div class="card">
             <div class="card-header">
-                <h3>{{ __('dashboard.offers') }}
+                <h3>{{ __('dashboard.offers') }} 
+                    @can('add-offer')
                     <a href="{{ route('offers.create') }}" class="btn btn-primary float-end btn-sm text-white  ">{{ __('dashboard.add') }}</a>
+                    @endcan
+</h3>
 
-
-                </h3>
+               
             </div>
                 <table class="table table-responsive">
                     <thead>

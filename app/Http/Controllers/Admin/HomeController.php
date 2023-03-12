@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\OrderItem;
-use App\Models\Order;
-
-use Illuminate\Http\Request;
-use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use DB;
+use App\Models\User;
+
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController extends Controller
 {
     public function index(){
 
             $order = OrderItem::select('category_id',DB::raw("SUM(sub_total) as total"))->groupBy('category_id')->orderBy('category_id')->get();
+            $roles= User::where('id',auth()->user()->id)->first();
             $sales = Order::select(
             DB::raw('month(created_at) as month'),
             DB::raw('sum(total) as price'),
@@ -80,7 +83,7 @@ class HomeController extends Controller
     ];
 
     $chart2 = new LaravelChart($chart_options);
-        return view('home',compact('chart1','order','sales','differenceInpercentage','chart2','chart3','differenceInpercentage1'));
+        return view('home',compact('chart1','order','sales','differenceInpercentage','chart2','chart3','differenceInpercentage1','roles'));
     
     }
 }

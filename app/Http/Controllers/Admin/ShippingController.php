@@ -10,6 +10,10 @@ use App\Http\Requests\ShippingRequest;
 
 class ShippingController extends Controller
 {
+    function __construct(){
+    $this->middleware('permission:add-shipping', ['only' => ['create']]);
+
+}
     /**
      * Display a listing of the resource.
      *

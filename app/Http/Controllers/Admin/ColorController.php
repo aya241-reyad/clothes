@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class ColorController extends Controller
 {
+
+    function __construct(){
+    $this->middleware('permission:add-colors', ['only' => ['color/create']]);
+
+}
     public function index()
     {
         $colors = Color::all();

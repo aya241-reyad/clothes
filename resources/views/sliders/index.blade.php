@@ -8,7 +8,9 @@
         <div class="card">
             <div class="card-header">
                 <h3>{{ __('dashboard.sliders') }}
+                    @can('add-slider')
                     <a href="{{ route('sliders.create') }}" class="btn btn-primary float-end btn-sm text-white  ">{{ __('dashboard.add') }}</a>
+                    @endcan
                   </h3>
             </div>
                 <table class="table table-light">
